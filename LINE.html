@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glitch Project Embed</title>
     <link rel="stylesheet" href="./style.css">
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        iframe {
+            width: 100%;
+            border: none;
+        }
+    </style>
 </head>
 <body>
     <div class="sidebar">
@@ -24,7 +45,6 @@
         <iframe id="glitch-iframe" src="https://sticky-quasar-change.glitch.me/login/login.html" allow="geolocation; microphone; camera; midi; encrypted-media"></iframe>
     </div>
 
-    ...existing code...
 
 <script>
     function toggleFullScreen() {
