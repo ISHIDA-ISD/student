@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glitch Project Embed</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <a href="./index.html">ホーム</a>
+        <a href="./dashboard.html">ダッシュボード</a>
+        <a href="./LINE.html">学校で使えるLINE</a>
+        <a href="./bord.html">掲示板</a>
+        <a href="./student.html">登録した人限定サイト！</a>
+        <a href="./index.html#teacher">先生はこちら</a>
+    </div>
+
+    <div class="main-content">
+        <h1>LINE</h1>
+        <p>ホーム→友だち追加でsherlockに送ってください</p>
+        <button class="fullscreen-btn" onclick="toggleFullScreen()">全画面</button>
+        <!-- Glitchの埋め込みコードをここに追加 -->
+        <iframe id="glitch-iframe" src="https://sticky-quasar-change.glitch.me/login/login.html" allow="geolocation; microphone; camera; midi; encrypted-media"></iframe>
+    </div>
+
+    <script>
+        function toggleFullScreen() {
+            var iframe = document.getElementById('glitch-iframe');
+            if (!document.fullscreenElement) {
+                iframe.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+            window.addEventListener('resize', function() {
+            // ウィンドウサイズ変更時にiframeの高さを調整
+            const iframe = document.getElementById('contentFrame');
+            iframe.style.height = window.innerHeight + 'px';
+        });
+
+        // 初期読み込み時にもiframeの高さを調整
+        document.getElementById('contentFrame').style.height = window.innerHeight + 'px';
+        }
+    </script>
+</body>
+</html>
