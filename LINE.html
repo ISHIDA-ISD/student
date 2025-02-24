@@ -8,12 +8,12 @@
 </head>
 <body>
     <div class="sidebar">
-        <a href="./index.html">ホーム</a>
-        <a href="./dashboard.html">ダッシュボード</a>
-        <a href="./LINE.html">学校で使えるLINE</a>
-        <a href="./bord.html">掲示板</a>
-        <a href="./student.html">登録した人限定サイト！</a>
-        <a href="./index.html#teacher">先生はこちら</a>
+        <a href="https://ishida-isd.github.io/ishida-student/index.html">ホーム</a>
+        <a href="https://ishida-isd.github.io/ishida-student/dashboard.html">ダッシュボード</a>
+        <a href="https://ishida-isd.github.io/student/LINE.html">学校で使えるLINE</a>
+        <a href="https://ishida-isd.github.io/student/board.html">掲示板</a>
+        <a href="https://ishida-isd.github.io/student/student.html">登録した人限定サイト！</a>
+        <a href="https://ishida-isd.github.io/student/index.html#teacher">先生はこちら</a>
     </div>
 
     <div class="main-content">
@@ -24,25 +24,30 @@
         <iframe id="glitch-iframe" src="https://sticky-quasar-change.glitch.me/login/login.html" allow="geolocation; microphone; camera; midi; encrypted-media"></iframe>
     </div>
 
-    <script>
-        function toggleFullScreen() {
-            var iframe = document.getElementById('glitch-iframe');
-            if (!document.fullscreenElement) {
-                iframe.requestFullscreen().catch(err => {
-                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-                });
-            } else {
-                document.exitFullscreen();
-            }
-            window.addEventListener('resize', function() {
-            // ウィンドウサイズ変更時にiframeの高さを調整
-            const iframe = document.getElementById('contentFrame');
-            iframe.style.height = window.innerHeight + 'px';
-        });
+    ...existing code...
 
-        // 初期読み込み時にもiframeの高さを調整
-        document.getElementById('contentFrame').style.height = window.innerHeight + 'px';
+<script>
+    function toggleFullScreen() {
+        var iframe = document.getElementById('glitch-iframe');
+        if (!document.fullscreenElement) {
+            iframe.requestFullscreen().catch(err => {
+                alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+            });
+        } else {
+            document.exitFullscreen();
         }
-    </script>
+    }
+
+    function adjustIframeSize() {
+        const iframe = document.getElementById('glitch-iframe');
+        iframe.style.height = window.innerHeight + 'px';
+        iframe.style.width = `calc(100% - 200px)`; // サイドバーの幅に合わせて調整
+    }
+
+    window.addEventListener('resize', adjustIframeSize);
+
+    // 初期読み込み時にもiframeのサイズを調整
+    document.addEventListener('DOMContentLoaded', adjustIframeSize);
+</script>
 </body>
 </html>

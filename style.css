@@ -68,3 +68,12 @@ iframe {
     width: 100%;
     border: none;
 }
+.main-content {
+    margin-left: 200px; /* サイドバーの幅に合わせて調整 */
+}
+
+#glitch-iframe {
+    width: calc(100% - 200px); /* サイドバーの幅に合わせて調整 */
+    height: 100vh; /* ビューポートの高さに合わせる */
+    border: none;
+}
