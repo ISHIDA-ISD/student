@@ -15,6 +15,10 @@
         <a href="https://ishida-isd.github.io/student/board.html">掲示板</a>
         <a href="https://ishida-isd.github.io/student/password.html">登録した人限定サイト！</a>
         <a href="https://ishida-isd.github.io/ishida-student/main/index.html#teacher">先生はこちら</a>
+        <a href="https://ishida-isd.github.io/student/Minecraft-1.8.html">マイクラ1.8（重いけど設定不要）</a>
+        <a href="https://ishida-isd.github.io/student/Minecraft-1.8-wasm-gc.html">マイクラ1.8（めっちゃ軽いけど設定必須）</a>
+        <a href="https://ishida-isd.github.io/student/Minecraft-1.12-wasm-gc.html">マイクラ1.12</a>
+        <a href="https://ishida-isd.github.io/student/interstellar">インターステラープロキシ</a>
     </div>
 
     <div class="main-content">
@@ -22,25 +26,5 @@
         <p>登録した人限定サイトに行ってパスワードを入れると色々できるようになります。また、次回からは入力しなくても良くなります</p>
         <!-- 追加のコンテンツをここに記述します -->
     </div>
-    <script>
-        function getCookie(kabao) {
-    const nameEQ = kabao + "=";
-    const ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-}
-window.onload = function() {
-    const authenticated = getCookie('kabao');
-    if (authenticated === 'true') {
-        window.location.href = 'dashboard-omg.html'; // リダイレクト先のURL
-    }
-}
-
-
-    </script>
 </body>
 </html>
