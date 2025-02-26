@@ -57,7 +57,7 @@
     </div>
 
 
-<script>
+<script>    
     function toggleFullScreen() {
         var iframe = document.getElementById('glitch-iframe');
         if (!document.fullscreenElement) {
@@ -79,6 +79,14 @@
 
     // 初期読み込み時にもiframeのサイズを調整
     document.addEventListener('DOMContentLoaded', adjustIframeSize);
+    document.getElementById('glitch-iframe').contentWindow.focus();
+    const iframe = document.getElementById('glitch-iframe');
+    iframe.addEventListener('load', () => {
+        const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+        iframeDocument.addEventListener('keydown', (event) => {
+            console.log('Key pressed in iframe: ', event.key);
+        });
+    });
 </script>
 </body>
 </html>
