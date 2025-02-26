@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">                          
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,15 +45,16 @@
         <a href="https://ishida-isd.github.io/student/kanji.html">漢字でGO!</a>
         <a href="https://ishida-isd.github.io/student/tetris.html">テトリス</a>
     </div>
+
     <div class="main-content">
-        <h1>Minecraft1.8</h1>
-        <p>マイクラ軽量化板（設定方法は下の動画</p>
+        <h1>テトリスオンライン</h1>
         <button class="fullscreen-btn" onclick="toggleFullScreen()">全画面</button>
         <!-- Glitchの埋め込みコードをここに追加 -->
-        <iframe id="glitch-iframe" src="https://ishida-isd.github.io/" allow="geolocation; microphone; camera; midi; encrypted-media"></iframe>
+        <iframe id="glitch-iframe" src="https://turbowarp.org/423246183" allow="geolocation; microphone; camera; midi; encrypted-media"></iframe>
     </div>
 
-<script>
+
+<script>    
     function toggleFullScreen() {
         var iframe = document.getElementById('glitch-iframe');
         if (!document.fullscreenElement) {
@@ -75,6 +76,14 @@
 
     // 初期読み込み時にもiframeのサイズを調整
     document.addEventListener('DOMContentLoaded', adjustIframeSize);
+    document.getElementById('glitch-iframe').contentWindow.focus();
+    const iframe = document.getElementById('glitch-iframe');
+    iframe.addEventListener('load', () => {
+        const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+        iframeDocument.addEventListener('keydown', (event) => {
+            console.log('Key pressed in iframe: ', event.key);
+        });
+    });
 </script>
 </body>
 </html>
