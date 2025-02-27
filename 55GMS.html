@@ -71,8 +71,42 @@
 <body onload="loadSidebar()">
     <div id="sidebar"></div>
     <div class="main-content">
-        <!-- メインコンテンツをここに追加 -->
+        <h1>1v1lol（マルチも可能）</h1>
+        <p>フォートナイトのパクリゲー（笑）</p>    
+        <button class="fullscreen-btn" onclick="toggleFullScreen()">全画面</button>
+        <iframe id="glitch-iframe" src="https://docs.google.com/presentation/d/1nhwSTJyT7gI9iZk4qwiCHFuUQcWCddzQQHjQ1gSxGNw/edit?usp=sharing" allow="geolocation; microphone; camera; midi; encrypted-media"></iframe>
     </div>
-    <iframe id="glitch-iframe" src="your-source-url-here"></iframe>
+
+    <script>    
+        function toggleFullScreen() {
+            var iframe = document.getElementById('glitch-iframe');
+            if (!document.fullscreenElement) {
+                iframe.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        function adjustIframeSize() {
+            const iframe = document.getElementById('glitch-iframe');
+            iframe.style.height = window.innerHeight + 'px';
+            iframe.style.width = `calc(100% - 200px)`; // サイドバーの幅に合わせて調整
+        }
+
+        window.addEventListener('resize', adjustIframeSize);
+
+        // 初期読み込み時にもiframeのサイズを調整
+        document.addEventListener('DOMContentLoaded', adjustIframeSize);
+        document.getElementById('glitch-iframe').contentWindow.focus();
+        const iframe = document.getElementById('glitch-iframe');
+        iframe.addEventListener('load', () => {
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            iframeDocument.addEventListener('keydown', (event) => {
+                console.log('Key pressed in iframe: ', event.key);
+            });
+        });
+    </script>
 </body>
 </html>
