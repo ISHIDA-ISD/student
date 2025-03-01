@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タブドリLive!</title>
+    <link rel="stylesheet" href="./style.css">
+    <link id="favicon" rel="icon" href="icon.png">
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        iframe {
+            width: 100%;
+            border: none;
+        }
+    </style>
+    <script>
+        function loadSidebar() {
+            fetch('sidebar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('sidebar').innerHTML = data;
+                });
+        }
+    </script>
+    <script>    
+        function toggleFullScreen() {
+            var iframe = document.getElementById('glitch-iframe');
+            if (!document.fullscreenElement) {
+                iframe.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        function adjustIframeSize() {
+            const iframe = document.getElementById('glitch-iframe');
+            iframe.style.height = window.innerHeight + 'px';
+            iframe.style.width = `calc(100% - 200px)`; // サイドバーの幅に合わせて調整
+        }
+
+        window.addEventListener('resize', adjustIframeSize);
+
+        // 初期読み込み時にもiframeのサイズを調整
+        document.addEventListener('DOMContentLoaded', adjustIframeSize);
+        document.getElementById('glitch-iframe').contentWindow.focus();
+        const iframe = document.getElementById('glitch-iframe');
+        iframe.addEventListener('load', () => {
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            iframeDocument.addEventListener('keydown', (event) => {
+                console.log('Key pressed in iframe: ', event.key);
+            });
+        });
+    </script>
+</head>
+<body onload="loadSidebar()">
+    <div id="sidebar"></div>
+    <div class="main-content">
+        <h1>太鼓の達人です。ガチもんです。</h1>
+        <button class="fullscreen-btn" onclick="toggleFullScreen()">全画面</button>
+        <iframe id="glitch-iframe" src="https://legend-spiffy-shame.glitch.me/" allow="geolocation; microphone; camera; midi; encrypted-media"></iframe>
+    </div>
+</body>
+</html>
